@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Panel Admin</title>
+
+  <link rel="stylesheet" href="css/gracias.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <img
+      src="img/logo.png"
+      class="logo-card"
+    >
+
+    <h1>📊 Resultados</h1>
+
+    <p id="total">
+      Cargando...
+    </p>
+
+    <p id="op1"></p>
+
+    <p id="op2"></p>
+
+    <button onclick="location.reload()">
+      Actualizar
+    </button>
+
+  </div>
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- JS -->
+  <script src="admin.js"></script>
+
+</body>
+</html>

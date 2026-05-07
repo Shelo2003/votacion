@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Votación</title>
+
+  <link rel="stylesheet" href="css/votar.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <img
+      src="img/logo.png"
+      class="logo-card"
+    >
+
+    <h1>Elige tu opción</h1>
+
+    <form id="votoForm">
+
+      <!-- OPCIÓN 1 -->
+      <label class="opcion">
+
+        <input
+          type="radio"
+          name="voto"
+          value="opcion1"
+        >
+
+        <span>Opción 1</span>
+
+      </label>
+
+      <!-- OPCIÓN 2 -->
+      <label class="opcion">
+
+        <input
+          type="radio"
+          name="voto"
+          value="opcion2"
+        >
+
+        <span>Opción 2</span>
+
+      </label>
+
+      <button type="submit">
+        Enviar voto
+      </button>
+
+    </form>
+
+  </div>
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- JS -->
+  <script src="voto.js"></script>
+
+</body>
+</html>

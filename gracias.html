@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gracias</title>
+
+  <link rel="stylesheet" href="css/gracias.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <img
+      src="img/logo.png"
+      class="logo-card"
+    >
+
+    <h1>✔ Gracias por votar</h1>
+
+    <p>
+      Tu voto fue registrado correctamente.
+    </p>
+
+    <button onclick="volverInicio()">
+      Volver al inicio
+    </button>
+
+  </div>
+
+  <script>
+
+    function volverInicio() {
+
+      // 🧹 limpiar rut guardado
+      localStorage.removeItem("rut");
+
+      // 🚀 volver
+      location.href = "index.html";
+    }
+
+  </script>
+
+</body>
+</html>
