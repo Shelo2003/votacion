@@ -63,7 +63,7 @@ input[type="text"]{
 
   outline:none;
 
-  font-size:16px;
+  font-size:17px;
 }
 
 /* 🔘 BOTÓN */
@@ -108,7 +108,7 @@ button:hover{
   background:#ffe5e5;
   color:#b30000;
 
-  border:1px solid #ffb3ff;
+  border:1px solid #ffb3b3;
 
   padding:10px;
   border-radius:8px;
@@ -125,6 +125,12 @@ button:hover{
 
   .container{
     padding:22px;
+  }
+
+  input,
+  textarea,
+  select{
+    font-size:17px;
   }
 
 }
