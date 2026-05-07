@@ -3,20 +3,26 @@
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#ffffff;
 
   margin:0;
-  padding:20px;
-
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
 
   min-height:100vh;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  background:#ffffff;
+
+  font-family:Arial,sans-serif;
+
+  padding:15px;
 }
 
+/* 📦 CONTENEDOR */
 .container{
+
   width:100%;
   max-width:360px;
 
@@ -32,17 +38,21 @@ body{
   box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
+/* 🖼️ LOGO */
 .logo-card{
   width:120px;
   margin-bottom:10px;
 }
 
+/* 📝 TÍTULO */
 h2{
   color:#333;
   margin-bottom:20px;
 }
 
+/* ✍️ INPUT */
 input[type="text"]{
+
   width:100%;
 
   padding:12px;
@@ -52,9 +62,13 @@ input[type="text"]{
   border-radius:8px;
 
   outline:none;
+
+  font-size:16px;
 }
 
+/* 🔘 BOTÓN */
 button{
+
   width:100%;
 
   padding:12px;
@@ -74,7 +88,9 @@ button:hover{
   background:#e0e0e0;
 }
 
+/* ✅ ALERTA OK */
 .ok{
+
   background:#e6ffe6;
   color:#006600;
 
@@ -86,11 +102,13 @@ button:hover{
   margin-top:15px;
 }
 
+/* ❌ ALERTA ERROR */
 .error{
+
   background:#ffe5e5;
   color:#b30000;
 
-  border:1px solid #ffb3b3;
+  border:1px solid #ffb3ff;
 
   padding:10px;
   border-radius:8px;
@@ -98,14 +116,15 @@ button:hover{
   margin-top:15px;
 }
 
+/* 📱 CELULAR */
 @media(max-width:768px){
 
   body{
-    padding:10px;
+    padding:12px;
   }
 
   .container{
-    padding:20px;
+    padding:22px;
   }
 
 }
