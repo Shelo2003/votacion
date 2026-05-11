@@ -14,40 +14,49 @@ const supabaseClient =
     supabaseKey
   );
 
+
 // 📥 CARGAR JSON
-fetch("datos.json")
-  .then(res => res.json())
-  .then(data => {
+async function cargarBaseDatos() {
+  try {
+    const res = await fetch("datos.json?v=" + Date.now());
+    const data = await res.json();
 
-    // 🔥 normalizar
     baseDatos = data.map(rut =>
-      rut.trim().toLowerCase()
+      rut
+        .replace(/\./g, "")
+        .replace(/\s/g, "")
+        .trim()
+        .toLowerCase()
     );
 
-  })
-
-  .catch(err => {
-
-    console.error(
-      "❌ Error cargando datos.json:",
-      err
-    );
-
-  });
-
-
-// 🧼 LIMPIAR RUT
-function limpiarRut(rut){
-
-  return rut
-    .trim()
-    .toLowerCase();
-
+  } catch (err) {
+    console.error("❌ Error cargando datos.json:", err);
+  }
 }
 
 
+// 🧼 LIMPIAR RUT
+function limpiarRut(rut) {
+  return rut
+    .replace(/\./g, "")
+    .replace(/\s/g, "")
+    .trim()
+    .toLowerCase();
+}
+
+
+// 🚀 cargar al inicio
+cargarBaseDatos();
+
+
+// 🔁 AUTO ACTUALIZACIÓN (cada 10 segundos)
+setInterval(() => {
+  cargarBaseDatos();
+}, 10000);
+
+
 // 🔍 VALIDAR RUT
-async function validarRut(){
+async function validarRut() {
 
   const input =
     document.getElementById("rutInput");
@@ -59,42 +68,36 @@ async function validarRut(){
     limpiarRut(input.value);
 
 
-  // ⏳ esperar JSON
-  if(baseDatos.length === 0){
-
+  // ⏳ esperando carga
+  if (baseDatos.length === 0) {
     resultado.innerHTML = `
       <p class="error">
         ⏳ Cargando base de datos...
       </p>
     `;
-
     return;
   }
 
 
   // ❌ NO EXISTE EN PADRÓN
-  if(!baseDatos.includes(rutIngresado)){
-
+  if (!baseDatos.includes(rutIngresado)) {
     resultado.innerHTML = `
       <p class="error">
         ✖ RUT no registrado
       </p>
 
-      <button
-        onclick="
-          window.location.href=
-          'https://wa.me/56978732934?text=Quiero%20consultar%20por%20mi%20RUT'
-        "
-      >
+      <button onclick="
+        window.location.href=
+        'https://wa.me/56978732934?text=Quiero%20consultar%20por%20mi%20RUT'
+      ">
         Soporte vía WhatsApp
       </button>
     `;
-
     return;
   }
 
 
-  // 🔎 REVISAR SI YA VOTÓ
+  // 🔎 YA VOTÓ
   const { data, error } =
     await supabaseClient
       .from("votos")
@@ -103,9 +106,7 @@ async function validarRut(){
       .limit(1);
 
 
-  // ❌ ERROR SUPABASE
-  if(error){
-
+  if (error) {
     console.error(error);
 
     resultado.innerHTML = `
@@ -113,25 +114,21 @@ async function validarRut(){
         Error verificando voto
       </p>
     `;
-
     return;
   }
 
 
-  // 🚫 YA VOTÓ
-  if(data && data.length > 0){
-
+  if (data && data.length > 0) {
     resultado.innerHTML = `
       <p class="error">
         ⚠ Este RUT ya votó
       </p>
     `;
-
     return;
   }
 
 
-  // ✅ PUEDE VOTAR
+  // ✅ OK
   resultado.innerHTML = `
     <p class="ok">
       ✔ RUT válido
@@ -143,18 +140,12 @@ async function validarRut(){
   `;
 
 
-  // 💾 GUARDAR Y ENTRAR
   document
     .getElementById("btnVotar")
     .addEventListener("click", () => {
 
-      localStorage.setItem(
-        "rut",
-        rutIngresado
-      );
-
+      localStorage.setItem("rut", rutIngresado);
       location.href = "votar.html";
 
     });
-
 }
