@@ -99,7 +99,8 @@ async function validarRut(){
     await supabaseClient
       .from("votos")
       .select("rut")
-      .eq("rut", rutIngresado);
+      .eq("rut", rutIngresado)
+      .limit(1);
 
 
   // ❌ ERROR SUPABASE
@@ -118,7 +119,7 @@ async function validarRut(){
 
 
   // 🚫 YA VOTÓ
-  if(data.length > 0){
+  if(data && data.length > 0){
 
     resultado.innerHTML = `
       <p class="error">
